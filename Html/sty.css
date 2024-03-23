@@ -1,0 +1,92 @@
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    /* background-image: url('img/bg.jpg'); */
+    background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+  height: 100%;
+ 
+
+
+}
+
+       
+     
+.container > ul {
+    display: flex;
+    background: linear-gradient(135deg, #1815b280, #9e047fb9);
+    margin-top: auto;
+    color: white;
+    padding: 20px; /* Added padding to provide space around the navigation */
+}
+
+.container > ul li {
+    cursor: pointer;
+    list-style-type: none;
+    padding: 0 10px; /* Added padding horizontally */
+}
+
+.container > ul li > a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease; /* Added transition for smooth color change on hover */
+}
+
+.container > ul li > a:hover {
+    color: #868686;
+}
+
+.main-head {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 50px;
+    text-transform: capitalize;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 100px; /* Added margin to push it down from the top */
+    text-align: center; /* Center align the text */
+
+}
+
+
+.social-media {
+    display: flex;
+    align-items: center;
+    /* margin-left: auto; */
+position: relative;
+left: 58%;
+}
+
+.social-media a {
+    margin-left: 10px; /* Added space between social media icons */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .body{
+        height: 80vh;
+    }
+    .container {
+        padding: 10px;
+    }
+    .container > ul {
+        flex-direction: row; /* Stack the navigation vertically on smaller screens */
+        align-items: center; /* Center align the items */
+        padding: 15px; 
+    }
+    .main-head {
+        font-size: 30px; /* Decrease font size for smaller screens */
+        margin-top: 50px; /* Adjust margin */
+    }
+    .social-media {
+      padding: -15px;
+        left: -6px;
+   
+        
+    }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Form Validation</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm">
+        <input type="text" name="name" id="name" placeholder="Enter your name">
+        <span id="nameError" class="error"></span><br><br>
+
+        <input type="text" name="email" id="email" placeholder="Enter your email">
+        <span id="emailError" class="error"></span><br><br>
+
+        <input type="tel" name="phone" id="phone" placeholder="Enter your phone number">
+        <span id="phoneError" class="error"></span><br><br>
+
+        <textarea name="message" id="message" cols="30" rows="5" placeholder="Enter your message"></textarea>
+        <span id="messageError" class="error"></span><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Reset error messages
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('phoneError').textContent = '';
+            document.getElementById('messageError').textContent = '';
+
+            // Fetch form values
+            let name = document.getElementById('name').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let phone = document.getElementById('phone').value.trim();
+            let message = document.getElementById('message').value.trim();
+
+            // Validate name
+            if (name === '') {
+                document.getElementById('nameError').textContent = 'Name is required';
+                return;
+            }
+
+            // Validate email
+            if (email === '') {
+                document.getElementById('emailError').textContent = 'Email is required';
+                return;
+            } else if (!isValidEmail(email)) {
+                document.getElementById('emailError').textContent = 'Invalid email format';
+                return;
+            }
+
+            // Validate phone
+            if (phone === '') {
+                document.getElementById('phoneError').textContent = 'Phone number is required';
+                return;
+            } else if (!isValidPhone(phone)) {
+                document.getElementById('phoneError').textContent = 'Invalid phone number format';
+                return;
+            }
+
+            // Validate message
+            if (message === '') {
+                document.getElementById('messageError').textContent = 'Message is required';
+                return;
+            }
+
+            // If all validations pass, you can submit the form
+            this.submit();
+        });
+
+        // Function to validate email format
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Function to validate phone number format
+        function isValidPhone(phone) {
+            return /^\d{10}$/.test(phone);
+        }
+    </script>
+</body>
+</html>

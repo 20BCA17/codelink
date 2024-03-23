@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/uwp/uwp1271503.jpeg');
+            background-size: cover;
+            object-fit: cover;
+            background-repeat: no-repeat;
+
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.5);
+            
+            border: 1px solid rgba(0, 0, 0, 0.1);
+          
+            border-radius: 10px;
+          
+            padding: 20px;
+          
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+           
+            width: 60%;
+
+        }
+
+        img {
+            border-radius: 50%;
+            justify-content: center;
+
+            object-fit: cover;
+
+        }
+
+        .img-center {
+            display: block;
+            margin: 0 auto;
+            height: 160px;
+            
+            padding: 10px;
+        }
+
+        .ccode {
+            margin-right: 10px;
+
+        }
+
+        .img-center {
+            display: block;
+            margin: 0 auto;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-4">
+        <h3 style="text-align: center; font-family:'Times New Roman', Times, serif;color: rgb(215, 250, 250);">PROFILE
+        </h3>
+        <div class="insert p-2">
+
+            <div class="img-border">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
+                    id="img1" style='height:240px;' class="img-center img-fluid" width="240px">
+            </div>
+            <form action="#" id="myForm">
+                <div class="my-3">
+                    <input type="file" name="img" id="img" class="form-control" accept="image/*"
+                        onchange="readURL(this)">
+                    <p id="imgError" class="text-danger"></p>
+                </div>
+                <div class="my-1 row">
+                    <div class="col-md-6">
+                        <input type="text" name="firstName" id="firstName" class="form-control"
+                            placeholder="First Name">
+                        <p id="firstNameError" class="text-danger"></p>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name">
+                        <p id="lastnameError" class="text-danger"></p>
+                    </div>
+                </div>
+                <div class="my-1">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="xyz@gmail.com">
+                    <p id="emailError" class="text-danger"></p>
+                </div>
+
+
+
+                <div class="input-group mb-3">
+
+
+                    <select id="countryCode" aria-label="Country Code" name="countryCode">
+                        <option value="+91">+91</option>
+                        <option value="+1">+1</option>
+                        <option value="+44">+44</option>
+                    </select>
+
+                    <input type="text" class="form-control" placeholder="73XXXXXX63" aria-label="contact" name="contact"
+                        aria-describedby="basic-addon1" id="contact" maxlength="10">
+                </div>
+                <p id="contactError" class="text-danger"></p>
+
+
+                <div class="my-3">
+                    <textarea name="address" id="address" cols="8" rows="2" class="form-control"
+                        placeholder="Address"></textarea>
+                    <p id="addressError" class="text-danger"></p>
+                </div>
+                <div class="my-3">
+                    <button type="button" class="btn btn-danger" onclick="validateForm()">Submit</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function readURL(input) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.querySelector("#img1").setAttribute("src", e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function validateForm() {
+            document.querySelectorAll('.text-danger').forEach(error => error.textContent = '');
+
+            let isValid = true;
+
+            const imgInput = document.getElementById('img');
+            if (imgInput.files.length === 0) {
+                document.getElementById('imgError').textContent = 'Please select an image';
+                isValid = false;
+            }
+
+            const firstName = document.getElementById('firstName').value.trim();
+            if (firstName === '') {
+                document.getElementById('firstNameError').textContent = 'Please enter your First Name';
+                isValid = false;
+            }
+
+            const lastname = document.getElementById('lastname').value.trim();
+            if (lastname === '') {
+                document.getElementById('lastnameError').textContent = 'Please enter your lastname';
+                isValid = false;
+            }
+
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+
+            const contact = document.getElementById('contact').value.trim();
+            if (contact === '' || isNaN(contact)) {
+                document.getElementById('contactError').textContent = 'Please enter a valid contact number';
+                isValid = false;
+            }
+
+            const address = document.getElementById('address').value.trim();
+            if (address === '') {
+                document.getElementById('addressError').textContent = 'Please enter your address';
+                isValid = false;
+            }
+
+            if (isValid) {
+                const formData = {
+                    img: document.getElementById('img').files[0].name,
+                    firstName: firstName,
+                    lastname: lastname,
+                    email: email,
+
+                    contact: document.getElementById('countryCode').value + " " + contact,
+                    address: address
+                };
+
+                console.log("Form Data:", formData);
+                document.getElementById("myForm").reset();
+            }
+        }
+    </script>
+</body>
+
+</html>
