@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Count</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+        </style>
+</head>
+<body>
+    <input type="text" id="te" oninput="nitin()" style="width: 100%;height: 20px;">
+    <textarea name="" id="ted" cols="30" rows="10" style="width: 50%; resize: none;"></textarea>
+    <!-- <input type="number" > -->
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Count</th>
+        </tr>
+        <tr>
+            <td>Uppercase Characters</td>
+            <td id="upperCount">0</td>
+        </tr>
+        <tr>
+            <td>Lowercase Characters</td>
+            <td id="lowerCount">0</td>
+        </tr>
+        <tr>
+            <td>Spaces</td>
+            <td id="spaceCount">0</td>
+        </tr>
+        <tr>
+            <td>Special Characters</td>
+            <td id="specialCount">0</td>
+        </tr>
+        <tr>
+            <td>Numbers</td>
+            <td id="numberCount">0</td>
+        </tr>
+    </table>
+    <p id="demo"></p>
+    <button onclick="bold()">Bold</button>
+    <script>
+        nitin = () => {
+            let inputText = document.getElementById('te').value;
+            document.getElementById('ted').value=inputText;
+
+            let uppercaseCount = 0;
+            let lowercaseCount = 0;
+            let spaceCount = 0;
+            let specialCharCount = 0;
+            let numberCount = 0;
+
+            for (let i = 0; i < inputText.length; i++) {
+                let char = inputText[i];
+                if (char >= 'A' && char <= 'Z') {
+                    uppercaseCount++;
+                } else if (char >= 'a' && char <= 'z') {
+                    lowercaseCount++;
+                } else if (char === ' ') {
+                    spaceCount++;
+                } else if (char >= '0' && char <= '9') {
+                    numberCount++;
+                } else {
+                    specialCharCount++;
+                }
+            }
+
+            document.getElementById('upperCount').innerText = uppercaseCount;
+            document.getElementById('lowerCount').innerText = lowercaseCount;
+            document.getElementById('spaceCount').innerText = spaceCount;
+            document.getElementById('specialCount').innerText = specialCharCount;
+            document.getElementById('numberCount').innerText = numberCount;
+        }
+        
+        bold = () => {
+            let input = document.getElementById('te');
+            input.style.fontWeight = 'bold';
+            alert("ok done ")
+        }
+    </script>
+</body>
+</html>
